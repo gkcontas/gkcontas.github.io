@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="pt-BR"> 
+
+<head>
+    <title>Secret-Convert</title>
+</head>
+
+<body>
+
+    <div>
+        <label>Codificar:</label>
+        <input type="text" id="codificado" />
+        <button onclick="codificar()">Codificar</button>
+    </div>
+
+    <div>
+        <label>Decodificar:</label>
+        <input type="text" id="decodificado" />
+        <button onclick="decodificar()">Decodificar</button>
+    </div>
+
+    <div>
+        <label>Resultado:</label>
+        <span id="resultado"></span>
+    </div>
+
+</body>
+
+<script>
+
+    function codificar() {
+        let codificado = document.getElementById('codificado').value;
+        
+        codificado = codificado.split('').map(c => c.charCodeAt() + 3).map(c => String.fromCharCode(c)).join('');
+        codificado = radom() + codificado;
+        
+        document.getElementById('resultado').innerHTML = codificado.trim();
+    }
+
+    function decodificar() {
+        let decodificado = document.getElementById('decodificado').value.trim();
+
+        decodificado = decodificado.substring(3);
+        decodificado = decodificado.split('').map(c => c.charCodeAt() - 3).map(c => String.fromCharCode(c)).join('');
+
+        document.getElementById('resultado').innerHTML = decodificado;
+    }
+
+    function radom() {
+        const s = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+        return Array(3).join().split(',').map(function() { return s.charAt(Math.floor(Math.random() * s.length)); }).join('');
+    }
+
+</script>
+
+</html>
